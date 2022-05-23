@@ -36,8 +36,13 @@ const Product = ({ pizza }) => {
     }
   };
   const handleClick = () => {
-    dispatch(addProduct({ ...pizza, extras, price, quantity }));
-    alert(`${title} Added to the cart`);
+    if (quantity <= 0) {
+      alert('Minimum quantity must be 1');
+      setQuantity(1);
+    } else {
+      dispatch(addProduct({ ...pizza, extras, price, quantity }));
+      alert(`${title} Added to the cart`);
+    }
   };
   return (
     <div className={styles.container}>
@@ -49,6 +54,15 @@ const Product = ({ pizza }) => {
       <div className={styles.right}>
         <h1 className={styles.title}>{title}</h1>
         <span className={styles.price}>Rs.{price}</span>
+        {size === 0 && (
+          <div className={styles.sizeText}>{' (Selected Size:- Small)'} </div>
+        )}
+        {size === 1 && (
+          <div className={styles.sizeText}>{' (Selected Size:- Medium)'}</div>
+        )}
+        {size === 2 && (
+          <div className={styles.sizeText}>{' (Selected Size:- Large)'}</div>
+        )}
         <p className={styles.desc}>{desc}</p>
         <h3 className={styles.choose}>Choose the size</h3>
         <div className={styles.sizes}>
@@ -84,6 +98,7 @@ const Product = ({ pizza }) => {
           <input
             onChange={(e) => setQuantity(e.target.value)}
             type="number"
+            value={quantity}
             defaultValue={1}
             className={styles.quantity}
           />

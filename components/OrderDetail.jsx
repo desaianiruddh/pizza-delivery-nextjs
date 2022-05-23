@@ -14,11 +14,16 @@ const OrderDetail = ({
     });
   };
   const handleDataAdd = () => {
+    const mobileNumRegex = /^([0|+[0-9]{1,5})?([6-9][0-9]{9})$/;
     if (name !== '' && mobileNum !== '' && address !== '') {
-      setClickedCheckout(false);
-      setShowPaymentOpt(true);
+      if (!mobileNumRegex.test(mobileNum)) {
+        alert('Only Indian Mobile Number is valid');
+      } else {
+        setClickedCheckout(false);
+        setShowPaymentOpt(true);
+      }
     } else {
-      alert('All the input filed is compulsory');
+      alert('All the input field is compulsory');
     }
   };
   return (

@@ -86,6 +86,10 @@
   margin-left: 60px;
   font-size: 15px;
 }
+.sizeText {
+  margin-top: 5px;
+  color: rgb(167, 167, 167);
+}
 .add {
   display: flex;
   flex-wrap: wrap;

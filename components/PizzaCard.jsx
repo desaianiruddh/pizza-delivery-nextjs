@@ -4,7 +4,7 @@ import Link from 'next/link';
 import styles from '../styles/PizzaCard.module.css';
 
 const PizzaCard = ({ pizzaInfo }) => {
-  const { _id,title, prices, img, desc } = pizzaInfo;
+  const { _id, title, prices, img, desc } = pizzaInfo;
   return (
     <div className={styles.container}>
       <Link href={`/product/${_id}`} passHref>
@@ -19,6 +19,9 @@ const PizzaCard = ({ pizzaInfo }) => {
       <h1 className={styles.title}>{title}</h1>
       <span className={styles.price}>Rs.{prices[1]}/-</span>
       <p className={styles.desc}>{desc}</p>
+      <Link href={`/product/${_id}`} passHref>
+        <button className={styles.button}>Add to cart</button>
+      </Link>
     </div>
   );
 };
